@@ -9,16 +9,18 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'spree_wait_list'
+gem 'spree_wait_list', github: 'praesens/spree_wait_list'
 ```
 
 And then execute:
-
-    $ bundle
+```ruby
+bundle install
+```
 
 Or install it yourself as:
-
-    $ gem install spree_wait_list
+```ruby
+bundle exec rails g spree_wait_list:install
+```
 
 ## Usage
 

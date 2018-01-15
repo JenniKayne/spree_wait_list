@@ -1,0 +1,35 @@
+<div class="well">
+  <%= search_form_for @search, :url => spree.stock_requests_admin_reports_path  do |f| %>
+  <div data-hook="admin_stock_requests_filters">
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <%= f.field_container :created_at, class: ['form-group'] do %>
+            <%= f.label :created_at, Spree.t(:created_at_from) %>
+            <%= f.text_field :created_at_gt,  value: datepicker_field_value(@search.created_at_gt), class: 'datepicker form-control', placeholder: 'From' %>
+          <% end %>
+          <%= f.field_container :variant_sku_cont, class: ['form-group'] do %>
+              <%= f.label :variant_sku_cont, Spree.t(:sku) %>
+              <%= f.text_field :variant_sku_cont, placeholder: 'SKU', class: 'form-control'  %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <%= f.field_container :created_at_lt, class: ['form-group'] do %>
+          <%= f.label :created_at, Spree.t(:created_at_to) %>
+          <%= f.text_field :created_at_lt,  value: datepicker_field_value(@search.created_at_lt), class: 'datepicker form-control', placeholder: 'To' %>
+        <% end %>
+        <%= f.field_container :status_eq, class: ['form-group'] do %>
+            <%= f.label :status_eq, Spree.t(:status) %>
+            <%= f.select :status_eq, options_for_select({ 'Please select' => '', 'New' => 'new', 'To notify' => 'to_notify', 'Notified' => 'notified'}, @search.status_eq), {}, class: 'select2' %>
+        <% end %>
+
+      </div>
+    </div>
+    <div class="actions filter-actions">
+      <%= button Spree.t(:search), 'icon-search' %>
+    </div>
+  </div>
+  <% end %>
+</div>
