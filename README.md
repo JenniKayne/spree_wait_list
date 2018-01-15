@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'spree_wait_list', github: 'praesens/spree_wait_list'
+gem 'spree_wait_list', github: 'praesensco/spree_wait_list'
 ```
 
 And then execute:
