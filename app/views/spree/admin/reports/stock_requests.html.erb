@@ -24,7 +24,7 @@
         <%= Spree.t(:sku) %>
       </th>
       <th>
-        <%= sort_link @search, :status %>
+        <%= sort_link @search, :state %>
       </th>
       <th>
         <%= sort_link @search, :created_at %>
@@ -51,7 +51,7 @@
           <%= stock_request.variant.sku if stock_request.variant %><br/>
         </td>
         <td>
-          <%= stock_request.status.titleize %>
+          <%= stock_request.state.titleize %>
         </td>
         <td>
           <%= time_ago_in_words(stock_request.created_at) %>

@@ -7,14 +7,13 @@ module Spree
 
     default_scope { order('created_at desc') }
 
-    scope :notified, lambda { |is_notified| where(status: is_notified ? 'notified' : 'new') }
-    scope :to_notify, -> { where("status = 'to_notify' AND (in_progress = FALSE OR in_progress IS NULL)") }
+    scope :notified, lambda { |is_notified| where(state: is_notified ? 'notified' : 'new') }
+    scope :to_notify, -> { where("state = 'to_notify' AND (in_progress = FALSE OR in_progress IS NULL)") }
 
-    state_machine :status, initial: 'new' do
+    state_machine :state, initial: 'new' do
       event :mark_to_notify do
         transition from: 'new', to: 'to_notify'
       end
-      after_transition to: 'to_notify', do: :mark_to_notify
 
       event :notify do
         transition from: 'to_notify', to: 'notified'
@@ -24,16 +23,9 @@ module Spree
       event :renew do
         transition from: 'to_notify', to: 'new'
       end
-      after_transition to: 'new', do: :mark_new
 
       before_transition :mark_in_progress
       after_transition :unmark_in_progress
-    end
-
-    def mark_new
-      return if status == 'new'
-      self.status = 'new'
-      save
     end
 
     def mark_in_progress
@@ -49,11 +41,6 @@ module Spree
     end
 
     private
-
-    def mark_to_notify
-      self.status = 'to_notify'
-      save
-    end
 
     def send_email
       UserMailer.back_in_stock(self).deliver_later

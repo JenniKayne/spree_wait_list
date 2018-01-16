@@ -20,9 +20,9 @@
           <%= f.label :created_at, Spree.t(:created_at_to) %>
           <%= f.text_field :created_at_lt,  value: datepicker_field_value(@search.created_at_lt), class: 'datepicker form-control', placeholder: 'To' %>
         <% end %>
-        <%= f.field_container :status_eq, class: ['form-group'] do %>
-            <%= f.label :status_eq, Spree.t(:status) %>
-            <%= f.select :status_eq, options_for_select({ 'Please select' => '', 'New' => 'new', 'To notify' => 'to_notify', 'Notified' => 'notified'}, @search.status_eq), {}, class: 'select2' %>
+        <%= f.field_container :state_eq, class: ['form-group'] do %>
+            <%= f.label :state_eq, Spree.t(:state) %>
+            <%= f.select :state_eq, options_for_select({ 'Please select' => '', 'New' => 'new', 'To notify' => 'to_notify', 'Notified' => 'notified'}, @search.state_eq), {}, class: 'select2' %>
         <% end %>
 
       </div>
