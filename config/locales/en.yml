@@ -1,6 +1,6 @@
 en:
   spree:
-    successful_stock_request: Thanks! we will notify you as soon as the item is back in stock
+    successful_stock_request: Thank you. We will notify you when this item is in stock.
     stock_requests: Stock Requests
     stock_requests_description: User Stock Request
     created_at_from: Created At From
