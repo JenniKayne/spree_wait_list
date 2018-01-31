@@ -1,7 +1,8 @@
-namespace :spree do
-  namespace :wait_list do
-    desc 'Send back-in-stock emails'
-    task notify: :environment do
+module Spree
+  class SendWaitlistNotificationsJob < ApplicationJob
+    queue_as :waitlist
+
+    def perform
       stock_requests = Spree::StockRequest.to_notify.limit(100)
 
       unless stock_requests.empty?
@@ -23,6 +24,9 @@ namespace :spree do
           end
         end
       end
+    rescue StandardError => error
+      ExceptionNotifier.notify_exception(error, data: { msg: 'Send Waitlist Notifications' })
+      raise error
     end
   end
 end
