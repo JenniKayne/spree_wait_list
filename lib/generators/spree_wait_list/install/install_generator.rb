@@ -11,7 +11,7 @@ module SpreeWaitList
       def add_schedule
         create_file 'config/schedule.rb' unless File.exist?('config/schedule.rb')
         append_file 'config/schedule.rb' do
-          "\nevery 6.hours do\n  runner 'spree:stock_request:notify'\nend\n"
+          "\nevery 6.hours do\n  runner 'spree:wait_list:notify'\nend\n"
         end
       end
 
